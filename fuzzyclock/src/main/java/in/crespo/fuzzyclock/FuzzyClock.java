@@ -8,11 +8,6 @@ import java.util.HashMap;
  */
 public class FuzzyClock {
 
-    public static String parseHourTest(Integer hour) {
-        return parseHour(hour);
-    }
-
-    @VisibleForTest
     private static String parseHour(Integer hour) {
         HashMap<Integer, String> hourMap = new HashMap<Integer, String>();
         hourMap.put(0, "meia noite");
@@ -32,11 +27,6 @@ public class FuzzyClock {
         return hourMap.get((hour % 12));
     }
 
-    public static String parseJunctionTest(Integer hour) {
-        return parseJunction(hour);
-    }
-
-    @VisibleForTest
     private static String parseJunction(Integer hour) {
         HashMap<Integer, String> junctionMap = new HashMap<>();
         junctionMap.put(0, "a");
@@ -53,11 +43,6 @@ public class FuzzyClock {
 
     }
 
-    public static String parseMinuteTest(Integer minute) {
-        return parseMinute(minute);
-    }
-
-    @VisibleForTest
     private static String parseMinute(Integer minute) {
         HashMap<Integer, String> minuteMap = new HashMap<>();
 
@@ -108,7 +93,7 @@ public class FuzzyClock {
         if (minute > 38) {
             hour++;
         }
-        return MessageFormat.format(parseMinute(minute), parseHourTest(hour), parseJunction(hour));
+        return MessageFormat.format(parseMinute(minute), parseHour(hour), parseJunction(hour));
     }
 
 }
